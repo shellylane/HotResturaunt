@@ -1,20 +1,33 @@
 // Dependencies
 // =============================================================
-var express = require("express");
-var path = require("path");
+const express = require("express");
+const path = require("path");
 
 // Sets up the Express App
 // =============================================================
-var app = express();
-var PORT = process.env.PORT || 3000;
+const app = express();
+const PORT = process.env.PORT || 3000;
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Star Wars Characters (DATA)
-// =============================================================
-var reservatiopns = [];
+const maxTables = 5;
+
+// {
+//     name: "joe",
+//     phoneNumber: "555-555-5555",
+//     email: "noreply@noplace.com",
+//     uniqueId: "1155"
+// }
+
+let tables = [
+
+];
+
+let waitlist = [
+
+]
 
 // Routes
 // =============================================================
@@ -33,41 +46,28 @@ app.get("/tables.html", function (req, res) {
     res.sendFile(path.join(__dirname, "add.html"));
 });
 
-// Displays all characters
+// Displays all tables
 app.get("/api/tables", function (req, res) {
-    // return res.json(characters);
+    return res.json(tables);
 });
 
-// Displays a single character, or returns false
+// Displays waitlist
 app.get("/api/waitlist/", function (req, res) {
-    // var chosen = req.params.character;
+    return res.json(waitlist);
 
-    // console.log(chosen);
-
-    // for (var i = 0; i < characters.length; i++) {
-    //     if (chosen === characters[i].routeName) {
-    //         return res.json(characters[i]);
-    //     }
-    // }
-
-    // return res.json(false);
 });
 
-// Create New Characters - takes in JSON input
+// add new table
 app.post("/api/tables", function (req, res) {
-    // // req.body hosts is equal to the JSON post sent from the user
-    // // This works because of our body parsing middleware
-    // var newcharacter = req.body;
 
-    // // Using a RegEx Pattern to remove spaces from newCharacter
-    // // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-    // newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
+    let newtable = req.body;
 
-    // console.log(newcharacter);
+    if (tables.length > 5) {
+        tables.push(newtable);
+    } else {
+        waitlist.push(newtable);
+    }
 
-    // characters.push(newcharacter);
-
-    // res.json(newcharacter);
 });
 
 // Starts the server to begin listening
