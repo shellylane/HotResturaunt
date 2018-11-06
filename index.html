@@ -5,7 +5,8 @@
 	<title>Tables Page</title>
 
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/test.css" />
 
 </head>
 <body>
@@ -13,14 +14,14 @@
 	<div class="container">
 
 		<div class="jumbotron">
-			<h1 class="text-center"><span class="glyphicon glyphicon-fire"></span> Hot Restaurant</h1>
+			<h1 id=title class="text-center"><span class="glyphicon glyphicon-fire"></span> Hot Restaurant</h1>
 			<hr>
 			<h2 class="text-center">We only have 5 tables! Book your seat before they all are gone!</h2>
 			<br>
 
 			<div class="text-center">
-				<a href="/tables"><button type="button" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-list-alt"></span> View Tables</button></a>
-				<a href="/reserve"><button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-credit-card"></span> Make Reservation</button></a>
+				<a href="/tables"><button type="button" id=tables-btn class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-list-alt"></span> View Tables</button></a>
+				<a href="/reserve"><button type="button" id=reserve-btn class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-credit-card"></span> Make Reservation</button></a>
 			</div>
 
 		</div>
@@ -32,7 +33,33 @@
     </footer>
 
 	</div>
-
+    <script type="text/javascript">
+        $("#tables-btn").on("click", function() {
+          //var tables = $("#character-search").val().trim();
+    
+          // Using a RegEx Pattern to remove spaces from searchedCharacter
+         
+          // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+          //searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
+    
+          $.get("/api/tables/", function(data) {
+            console.log(data);
+            if (data) {
+              $("#stats").show();
+              $("#customerName").text(data.customerName);
+              $("#phoneNumber").text(data.phoneNumber);
+              $("#customerEmail").text(data.customerEmail);
+              $("#customerID").text(data.customerID);
+            }
+            else {
+              //$("#customerName").text("The force is not strong with this one. Your character was not found.");
+              $("#stats").hide();
+            }
+          });
+        });
+      </script>
 
 </body>
+
+
 </html>
