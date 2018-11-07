@@ -33,31 +33,7 @@
     </footer>
 
 	</div>
-    <script type="text/javascript">
-        $("#tables-btn").on("click", function() {
-          //var tables = $("#character-search").val().trim();
     
-          // Using a RegEx Pattern to remove spaces from searchedCharacter
-         
-          // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-          //searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
-    
-          $.get("/api/tables/", function(data) {
-            console.log(data);
-            if (data) {
-              $("#stats").show();
-              $("#customerName").text(data.customerName);
-              $("#phoneNumber").text(data.phoneNumber);
-              $("#customerEmail").text(data.customerEmail);
-              $("#customerID").text(data.customerID);
-            }
-            else {
-              //$("#customerName").text("The force is not strong with this one. Your character was not found.");
-              $("#stats").hide();
-            }
-          });
-        });
-      </script>
 
 </body>
 

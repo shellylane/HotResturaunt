@@ -71,10 +71,23 @@
 			listGroupItem.append($("<h3>").text("Email: " + data[i].email));
 			listGroupItem.append($("<h3>").text("Unique ID: " + data[i].uniqueId));
   
-			$("#character-section").append(listGroupItem);
+			$("#tableSection").append(listGroupItem);
+		  }
+		});
+
+			$.get("/api/waitlist", function(data) {
+		  for (var i = 0; i < data.length; i++) {
+			console.log(data[i]);
+			var listGroupItem2 = $("<li class='list-group-item'>");
+  
+			listGroupItem2.append($("<h2>").text("Name: " + data[i].name));
+			listGroupItem2.append($("<h3>").text("Phone Number: " + data[i].phoneNumber));
+			listGroupItem2.append($("<h3>").text("Email: " + data[i].email));
+			listGroupItem2.append($("<h3>").text("Unique ID: " + data[i].uniqueId));
+  
+			$("#waitlistSection").append(listGroupItem);
 		  }
 		});
 	  </script>
-
 	
 </body>
