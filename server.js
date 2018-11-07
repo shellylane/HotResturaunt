@@ -37,13 +37,13 @@ app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
 });
 
-app.get("/reserve.html", function (req, res) {
-    res.sendFile(path.join(__dirname, "add.html"));
+app.get("/reserve", function (req, res) {
+    res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
 
-app.get("/tables.html", function (req, res) {
-    res.sendFile(path.join(__dirname, "add.html"));
+app.get("/tables", function (req, res) {
+    res.sendFile(path.join(__dirname, "tables.html"));
 });
 
 // Displays all tables
@@ -62,16 +62,25 @@ app.post("/api/tables", function (req, res) {
 
     let newtable = req.body;
 
-    if (tables.length > maxTables) {
-        tables.push(newtable);
-    } else {
+    if (tables.length >= maxTables) {
         waitlist.push(newtable);
+        
+    } else {
+        tables.push(newtable);
     }
+    console.log(tables);
+    console.log(waitlist);
+    console.log("table length " + tables.length);
+    console.log("waitlist lenght " + waitlist.length);
+    res.json({
+        tables,
+        waitlist
+    })
 
 });
 
 // Starts the server to begin listening
 // =============================================================
 app.listen(PORT, function () {
-    console.log("App listening on PORT " + PORT);
+    console.log("App listeing on http://localhost:" + PORT);
 });
