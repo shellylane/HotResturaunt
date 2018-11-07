@@ -62,7 +62,7 @@ app.post("/api/tables", function (req, res) {
 
     let newtable = req.body;
 
-    if (tables.length > 5) {
+    if (tables.length > maxTables) {
         tables.push(newtable);
     } else {
         waitlist.push(newtable);
