@@ -58,7 +58,7 @@
 								<input type="text" class="form-control" id="reserve_uniqueID">
 							</div>
 
-							<button type="submit" class="btn btn-primary submit">Submit</button>
+							<button type="submit" id="add-btn" class="btn btn-primary submit">Submit</button>
 						</form>
 
 					</div>
@@ -90,10 +90,10 @@
       };
 
       // Question: What does this code do??
-      $.post("/api/table", newTable)
+      $.post("/api/tables", newTable)
         .then(function(data) {
           console.log("add.html", data);
-        //  alert("Adding table...");
+          alert("Adding table...");
         });
     });
 </script>
