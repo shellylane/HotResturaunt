@@ -14,12 +14,6 @@ app.use(express.json());
 
 const maxTables = 5;
 
-// {
-//     name: "joe",
-//     phoneNumber: "555-555-5555",
-//     email: "noreply@noplace.com",
-//     uniqueId: "1155"
-// }
 
 let tables = [
 
