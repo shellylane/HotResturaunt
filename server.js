@@ -12,6 +12,8 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(express.static("public"));
+
 const maxTables = 5;
 
 
@@ -36,6 +38,13 @@ app.get("/reserve", function (req, res) {
 });
 
 
+// app.get("/assets/:folder/:file", function (req, res) {
+//     var filePath = req.params.folder + "/" + req.params.file;
+//     console.log(filePath);
+//     res.sendFile(path.join(__dirname, filePath));
+// });
+
+
 app.get("/tables", function (req, res) {
     res.sendFile(path.join(__dirname, "tables.html"));
 });
@@ -58,7 +67,7 @@ app.post("/api/tables", function (req, res) {
 
     if (tables.length >= maxTables) {
         waitlist.push(newtable);
-        
+
     } else {
         tables.push(newtable);
     }
